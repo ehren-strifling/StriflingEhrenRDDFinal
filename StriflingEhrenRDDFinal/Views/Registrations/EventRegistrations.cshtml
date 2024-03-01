@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EMSENTITIES.ViewModel.RegistrationsViewModel>
+
+@{
+    ViewBag.Title = "Event Registrations";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Register", "Create", new { eventId = ViewBag.eventId})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonEmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRegistered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventEndTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonEmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRegistered)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventEndTime)
+        </td>
+        <td>
+            <!--@Html.ActionLink("Details", "Details", new { /*id=item.PrimaryKey*/ })-->
+            <!--The edit option here leads to editing the person-->
+            @Html.ActionLink("Edit", "Edit", "person", new { personId = item.PersonId }, null) |
+            @Html.ActionLink("Delete", "Delete", new { eventId = item.EventId, personId = item.PersonId })
+        </td>
+    </tr>
+}
+
+</table>

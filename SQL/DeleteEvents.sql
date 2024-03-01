@@ -1,0 +1,19 @@
+GO
+-- Adds an Event to the database
+CREATE OR ALTER PROCEDURE usp_DeleteEvents
+@EventID INT
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			DELETE Registrations
+			WHERE EventID = @EventID;
+			DELETE Events
+			WHERE EventID = @EventID;
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		IF(@@TRANCOUNT > 0)
+			ROLLBACK TRANSACTION
+	END CATCH
+END
